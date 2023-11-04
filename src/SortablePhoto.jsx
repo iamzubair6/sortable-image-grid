@@ -20,14 +20,9 @@ const SortablePhoto = (props) => {
   };
 
   return (
-    <Photo
-      ref={setNodeRef}
-      style={style}
-      {...props}
-      {...attributes}
-      {...listeners}
-      // {...isDragging}
-    />
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+      <Photo src={props.url} />
+    </div>
   );
 };
 
