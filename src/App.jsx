@@ -24,7 +24,8 @@ function App() {
   const [activeId, setActiveId] = useState(null);
   const [selected, setSelected] = useState([]);
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
-  console.log(items);
+  const width = window.innerWidth;
+  const breakpoint = 768;
 
   const handleChecked = (url) => {
     if (selected.includes(url)) {
@@ -64,14 +65,16 @@ function App() {
         on
       >
         <SortableContext items={items} strategy={rectSortingStrategy}>
-          <Grid columns={5}>
+          <Grid columns={Boolean(width < breakpoint) ? 2 : 5}>
             {items.map((url, index) => (
               <div
-                className="sortable"
+                className={
+                  selected.includes(url) ? "sortable-img-selected" : "sortable"
+                }
                 key={url}
                 style={{
                   position: "relative",
-                  height: index === 0 ? 350 : 170,
+                  height: index === 0 ? 300 : 145,
                   gridRowStart: index === 0 ? "span 2" : null,
                   gridColumnStart: index === 0 ? "span 2" : null,
                 }}

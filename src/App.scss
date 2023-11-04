@@ -1,13 +1,26 @@
-#root {
-  background: whitesmoke;
+body {
+  background: rgb(228, 227, 227);
   padding: 40px;
-}
 
+  //responsive ness for mobile device
+  @media (max-width: 768px) {
+    #container {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+@media (max-width: 768px) {
+  #root {
+    padding: 0;
+  }
+}
 #container {
   background: white;
   margin: 0 200px 0 200px;
-  border-radius: 6px;
   // padding: 20px;
+  border-radius: 6px;
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -24,10 +37,20 @@
       transition: all 0.3s ease;
     }
   }
-  .hover-img:hover {
-    filter: brightness(60%);
-    transition: all 0.2s ease;
+  .sortable-img-selected {
+    .photo-checkbox {
+      visibility: visible;
+      transition: all 0.3s ease;
+    }
+    .hover-img {
+      filter: brightness(85%);
+      transition: all 0.3s ease;
+    }
   }
+  // .hover-img:hover {
+  //   filter: brightness(60%);
+  //   transition: all 0.2s ease;
+  // }
   .photo-checkbox {
     position: absolute;
     visibility: hidden;
@@ -48,6 +71,5 @@
   .divider {
     margin-top: 0 !important;
     margin-bottom: 25px;
-    padding: 0px !important;
   }
 }
