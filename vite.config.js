@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     minify: true,
     manifest: true,
-    outDir: "dir",
+    outDir: "dist",
   },
   server: {
     port: 3000,
