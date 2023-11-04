@@ -1,9 +1,9 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import React from "react";
-import Photo from "./Photo";
+import Photo from "../Photo";
 
-const SortablePhoto = (props) => {
+const SortablePhotoWrapper = (props) => {
   const sortable = useSortable({ id: props.url });
   const {
     attributes,
@@ -18,12 +18,16 @@ const SortablePhoto = (props) => {
     transform: CSS.Transform.toString(transform),
     transition,
   };
-
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <Photo src={props.url} />
-    </div>
+    <Photo
+      ref={setNodeRef}
+      style={style}
+      {...props}
+      {...attributes}
+      {...listeners}
+      // {...isDragging}
+    />
   );
 };
 
-export default SortablePhoto;
+export default SortablePhotoWrapper;

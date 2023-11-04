@@ -3,18 +3,40 @@ body {
   padding: 40px;
 
   //responsive ness for mobile device
-  @media (max-width: 768px) {
+  @media only screen and (max-width: 835px) {
     #container {
       margin: 0;
-      padding: 0;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    #container {
+      margin: 0;
+    }
+  }
+  @media only screen and (max-width: 835px) {
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+      padding: 30px;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
+      padding: 30px;
     }
   }
 }
-@media (max-width: 768px) {
-  #root {
+
+@media only screen and (max-width: 600px) {
+  body {
     padding: 0;
   }
 }
+
 #container {
   background: white;
   margin: 0 200px 0 200px;
@@ -27,39 +49,7 @@ body {
     align-items: center;
     padding: 0 30px;
   }
-  .sortable:hover {
-    .photo-checkbox {
-      visibility: visible;
-      transition: all 0.3s ease;
-    }
-    .hover-img {
-      filter: brightness(60%);
-      transition: all 0.3s ease;
-    }
-  }
-  .sortable-img-selected {
-    .photo-checkbox {
-      visibility: visible;
-      transition: all 0.3s ease;
-    }
-    .hover-img {
-      filter: brightness(85%);
-      transition: all 0.3s ease;
-    }
-  }
-  // .hover-img:hover {
-  //   filter: brightness(60%);
-  //   transition: all 0.2s ease;
-  // }
-  .photo-checkbox {
-    position: absolute;
-    visibility: hidden;
-    top: 10px;
-    left: 10px;
-    height: 16px;
-    width: 16px;
-    z-index: 1;
-  }
+
   .delete-btn {
     border: 0;
     background-color: unset;

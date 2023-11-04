@@ -1,0 +1,37 @@
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  padding: 30px;
+
+  .sortable:hover {
+    .photo-checkbox {
+      visibility: visible;
+      transition: all 0.3s ease;
+    }
+    .hover-img {
+      filter: brightness(60%);
+      transition: all 0.3s ease;
+    }
+  }
+  .sortable-img-selected {
+    .photo-checkbox {
+      visibility: visible;
+      transition: all 0.3s ease;
+    }
+    .hover-img {
+      filter: brightness(90%);
+      transition: all 0.3s ease;
+    }
+  }
+
+  .photo-checkbox {
+    position: absolute;
+    visibility: hidden;
+    top: 10px;
+    left: 10px;
+    height: 16px;
+    width: 16px;
+    z-index: 1;
+  }
+}

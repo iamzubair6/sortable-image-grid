@@ -1,31 +1,13 @@
-import {
-  DndContext,
-  DragOverlay,
-  MouseSensor,
-  TouchSensor,
-  closestCenter,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
-import {
-  SortableContext,
-  arrayMove,
-  rectSortingStrategy,
-} from "@dnd-kit/sortable";
 import React, { useState } from "react";
 import "./App.scss";
-import Grid from "./Grid";
-import Photo from "./Photo";
-import SortablePhoto from "./SortablePhoto";
+import PhotoGallery from "./components/PhotoGallery";
 import photos from "./photos.json";
 
 function App() {
-  const [items, setItems] = useState(photos);
-  const [activeId, setActiveId] = useState(null);
   const [selected, setSelected] = useState([]);
-  const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
-  const width = window.innerWidth;
-  const breakpoint = 768;
+  const [items, setItems] = useState(photos);
+  // const width = window.innerWidth;
+  // const breakpoint = 768;
 
   const handleChecked = (url) => {
     if (selected.includes(url)) {
@@ -56,72 +38,14 @@ function App() {
         )}
       </div>
       <hr className="divider" />
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-        onDragCancel={handleDragCancel}
-        on
-      >
-        <SortableContext items={items} strategy={rectSortingStrategy}>
-          <Grid columns={Boolean(width < breakpoint) ? 2 : 5}>
-            {items.map((url, index) => (
-              <div
-                className={
-                  selected.includes(url) ? "sortable-img-selected" : "sortable"
-                }
-                key={url}
-                style={{
-                  position: "relative",
-                  height: index === 0 ? 300 : 145,
-                  gridRowStart: index === 0 ? "span 2" : null,
-                  gridColumnStart: index === 0 ? "span 2" : null,
-                }}
-              >
-                <SortablePhoto url={url} index={index} />
-                <input
-                  type="checkbox"
-                  className="photo-checkbox"
-                  checked={selected.includes(url)}
-                  onChange={() => handleChecked(url)}
-                />
-              </div>
-            ))}
-          </Grid>
-        </SortableContext>
-
-        <DragOverlay adjustScale={true}>
-          {activeId ? (
-            <Photo url={activeId} index={items.indexOf(activeId)} />
-          ) : null}
-        </DragOverlay>
-      </DndContext>
+      <PhotoGallery
+        selected={selected}
+        handleChecked={handleChecked}
+        items={items}
+        setItems={setItems}
+      />
     </div>
   );
-
-  function handleDragStart(event) {
-    setActiveId(event.active.id);
-  }
-
-  function handleDragEnd(event) {
-    const { active, over } = event;
-
-    if (active.id !== over.id) {
-      setItems((items) => {
-        const oldIndex = items.indexOf(active.id);
-        const newIndex = items.indexOf(over.id);
-
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-
-    setActiveId(null);
-  }
-
-  function handleDragCancel() {
-    setActiveId(null);
-  }
 }
 
 export default App;
