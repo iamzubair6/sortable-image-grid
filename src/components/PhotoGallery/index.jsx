@@ -75,6 +75,14 @@ const PhotoGallery = ({ selected, handleChecked, items, setItems }) => {
               />
             </div>
           ))}
+          <div className="upload-icon-container">
+            <img
+              className="upload-icon"
+              src="/Assets/upload.png"
+              alt="upload-icon"
+            />
+            <p>Upload Image</p>
+          </div>
         </div>
       </SortableContext>
 

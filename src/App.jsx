@@ -26,7 +26,15 @@ function App() {
         {!selected.length && <h2>Gallery</h2>}
         {Boolean(selected.length) && (
           <>
-            <h2>{selected.length} Files Selected</h2>
+            <div className="header-checkbox">
+              <input
+                type="checkbox"
+                className="photo-checkbox"
+                checked={selected.length > 0}
+                onChange={() => setSelected([])}
+              />
+              <h2>{selected.length} Files Selected</h2>
+            </div>
             <button
               className="delete-btn"
               onClick={() => removeSelectedItems(selected)}
