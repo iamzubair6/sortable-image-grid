@@ -61,7 +61,7 @@ const PhotoGallery = ({ selected, handleChecked, items, setItems }) => {
               key={url}
               style={{
                 position: "relative",
-                height: index === 0 ? 300 : 145,
+                aspectRatio: index === 0 ? 1 / 1 : 4 / 4,
                 gridRowStart: index === 0 ? "span 2" : null,
                 gridColumnStart: index === 0 ? "span 2" : null,
               }}
