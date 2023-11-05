@@ -59,8 +59,10 @@ git clone https://github.com/iamzubair6/sortable-image-grid.git
 ```
 
 ```sh
-  npm install
   cd sortable-image-grid
+```
+```sh
+  npm install
 ```
 
 ```sh
